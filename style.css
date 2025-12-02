@@ -117,7 +117,8 @@ pre {
     display: inline-block;
     position: relative;
     height: 30px;      /* 高さを固定 */
-    width: 40px;       /* 幅を少し広げる */
+    min-width: 40px;   /* 最低限の幅（width固定をやめる） */
+    padding: 0 10px;   /* 左右に少し余裕を持たせる */
     overflow: hidden;  /* 枠からはみ出た数字を隠す */
     vertical-align: middle; /* 周りの文字と高さを合わせる */
     text-align: center;
@@ -125,6 +126,7 @@ pre {
     border-radius: 4px;
     border: 1px solid #ddd;
     line-height: 30px; /* 文字を垂直方向の中央にする */
+    transition: width 0.2s; /* 幅が変わる時にヌルっと動く */
 }
 
 /* 数字そのもの */
