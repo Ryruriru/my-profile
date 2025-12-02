@@ -29,28 +29,29 @@ btn.addEventListener('click', function() {
     
     // アニメーション処理
     
-    // 今表示されている数字（古い数字）を取得
-    const currentDigit = display.querySelector('.digit');
+    // 1. 今表示されている「すべての」数字を取得
+    const currentDigits = display.querySelectorAll('.digit');
     
-    // 新しい数字の要素を作る
+    // 2. 古い数字たちを強制的に「退場モード（slide-out）」にする
+    //    すでに退場中のものも含めて、すべて上に飛ばす
+    currentDigits.forEach(digit => {
+        digit.classList.remove('slide-in'); // 入場アニメーションをキャンセル
+        digit.classList.add('slide-out');   // 退場アニメーションを開始
+        
+        // アニメーションが終わったら（0.3秒後）確実に削除する
+        // ※連打されても、個別にタイマーが動くので問題ない
+        setTimeout(() => {
+            digit.remove();
+        }, 300);
+    });
+    
+    // 3. 新しい数字の要素を作る
     const newDigit = document.createElement('span');
     newDigit.textContent = count;
     newDigit.className = 'digit slide-in'; // 「下から入る」クラスをつける
     
-    // 古い数字に「上に消える」クラスをつける
-    if (currentDigit) {
-        currentDigit.classList.add('slide-out');
-    }
-    
-    // 新しい数字を画面に追加
+    // 4. 新しい数字を画面に追加
     display.appendChild(newDigit);
-    
-    // アニメーションが終わった頃（0.3秒後）に古い数字を完全に消す
-    setTimeout(() => {
-        if (currentDigit) {
-            currentDigit.remove();
-        }
-    }, 300);
 
     confetti({
         particleCount: 100,
