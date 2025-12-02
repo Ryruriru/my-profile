@@ -9,9 +9,31 @@
 </head>
 <body>
     <h1>Hello from Ryruriru  Server!</h1>
-    <p>This website is served using Cloudflare Pages and GitHub.</p>
+    <p id="current-time">現在時刻を読み込み中・・・</p>
+    <p class="intro">This website is served using Cloudflare Pages and GitHub.</p>
     <h2>これはテストです．私は現在HTMLとCSS，JavaScriptを勉強しています． </h2>
 
+    <div class="skills-container">
+        <h3>Skills</h3>
+        <div class="skill-tags">
+            <span class="tag python">Python</span>
+            <span class="tag kotlin">Kotlin</span>
+            <span class="tag java">Java</span>
+            <span class="tag cpp">C++</span>
+            <span class="tag go">Go</span>
+            <span class="tag git">Git</span>
+            <span class="tag html">HTML</span>
+            <span class="tag css">CSS</span>
+            <span class="tag js">JavaScript</span>
+
+        </div>
+    </div>
+
+    <div>
+        <h3>Click Counter</h3>
+        <button id="click-button" class="count-button">Click!</button>
+        <p>Click-Count: <span id="click-count" class="counter-window"><span class="digit">0</span></span></p>
+    </div>
     <p>
         <a href="https://sasakulab.com">sasakulabへ移動する</a>
     </p>
@@ -24,9 +46,11 @@ class me:
         self.hobby = "PC"
         self.language = ["Japanese", "English", "Python", "Kotlin", "Java", "C++", "Go"]
     </code></pre>
-    
         <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+        <script src="script.js"></script>
 
 </body>
+</html>
 </html>

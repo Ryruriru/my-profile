@@ -36,3 +36,128 @@ pre {
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
+
+/* スキルタグのスタイル */
+.skills-container {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    max-width: 600px; /* 幅が広がりすぎないように制限 */
+}
+
+.skills-container h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    color: #555;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #333;
+    background-color: #eee;
+    transition: transform 0.2s; /* ホバー時に少し動くアニメーション */
+}
+
+.tag:hover {
+    transform: translateY(-2px); /* ホバー時に少し浮く */
+}
+
+/* 個別の色設定 */
+.tag.python { background-color: #e3f2fd; color: #1565c0; }
+.tag.kotlin { background-color: #f3e5f5; color: #7b1fa2; }
+.tag.java { background-color: #fff3e0; color: #ef6c00; }
+.tag.cpp { background-color: #e1f5fe; color: #0277bd; }
+.tag.html { background-color: #fff3e0; color: #e65100; }
+.tag.css { background-color: #f3e5f5; color: #7b1fa2; }
+.tag.js { background-color: #fffde7; color: #fbc02d; }
+.tag.go { background-color: #e0f7fa; color: #006064; }
+.tag.git { background-color: #ffebee; color: #c62828; }
+
+.count-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    /*border: none;*/
+}
+
+.count-button:hover {
+    background-color: #0056b3;
+}
+
+.intro {
+    color:#555; /* 文字の色を濃いグレーにする */
+    font-weight: bold; /* 文字を太くする */
+    background-color: #fff; /* 背景色を白にする */
+    padding: 15px; /* 内側に余白を生成 */
+    border-left: 5px solid #0056b3; /* 左側に青い線を追加 */
+}
+
+/* カウンターのアニメーション */
+
+/* 数字を表示するウィンドウ */
+.counter-window {
+    display: inline-block;
+    position: relative;
+    height: 30px;      /* 高さを固定 */
+    width: 40px;       /* 幅を少し広げる */
+    overflow: hidden;  /* 枠からはみ出た数字を隠す */
+    vertical-align: middle; /* 周りの文字と高さを合わせる */
+    text-align: center;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    line-height: 30px; /* 文字を垂直方向の中央にする */
+}
+
+/* 数字そのもの */
+.digit {
+    position: absolute;
+    width: 100%;
+    height: 100%;      /* 高さを親に合わせる */
+    left: 0;
+    top: 0;
+    font-weight: bold;
+    color: #007bff;
+    display: flex;             /* フレックスボックスを使う */
+    align-items: center;       /* 垂直方向中央揃え */
+    justify-content: center;   /* 水平方向中央揃え */
+}
+
+
+/* 下から入ってくるアニメーション */
+.digit.slide-in {
+    animation: slideIn 0.3s forwards;
+}
+
+/* 上に消えていくアニメーション */
+.digit.slide-out {
+    animation: slideOut 0.3s forwards;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(100%); } /* 最初は下にいる */
+    to   { transform: translateY(0); }    /* 定位置に来る */
+}
+
+@keyframes slideOut {
+    from { transform: translateY(0); }    /* 最初は定位置 */
+    to   { transform: translateY(-100%); } /* 上に消える */
+}
