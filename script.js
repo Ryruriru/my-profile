@@ -59,6 +59,18 @@ fetch(API_URL)
 if (btn) {
     // ボタンがクリックされたときの処理
     btn.addEventListener('click', function() {
+        // サーバーにカウントアップを通知
+        fetch(API_URL, {
+            method: 'POST'
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Count updated:", data.count);
+        })
+        .catch(error => {
+            console.error("Error updating count:", error);
+        });
+
         count++; // 回数を増やす
     
         // アニメーション処理
