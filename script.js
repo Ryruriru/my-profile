@@ -49,12 +49,12 @@ fetch(API_URL)
     .then(response => response.json())
     .then(data => {
         console.log("Initial count from server:", data.count);
+        count = data.count; // サーバーの値をローカル変数に反映
         updateDisplay(data.count);
     })
     .catch(error => {
         console.error("Error fetching initial count:", error);
     });
-
 
 if (btn) {
     // ボタンがクリックされたときの処理
@@ -66,43 +66,24 @@ if (btn) {
         .then(response => response.json())
         .then(data => {
             console.log("Count updated:", data.count);
+            // 念のためサーバーの値と同期
+            if (data.count > count) {
+                count = data.count;
+                updateDisplay(count);
+            }
         })
         .catch(error => {
             console.error("Error updating count:", error);
         });
 
-        count++; // 回数を増やす
-    
-        // アニメーション処理
-    
-        // 1. 今表示されている「すべての」数字を取得
-        const currentDigits = display.querySelectorAll('.digit');
-    
-        // 2. 古い数字たちを強制的に「退場モード（slide-out）」にする
-        //    すでに退場中のものも含めて、すべて上に飛ばす
-        currentDigits.forEach(digit => {
-            digit.classList.remove('slide-in'); // 入場アニメーションをキャンセル
-            digit.classList.add('slide-out');   // 退場アニメーションを開始
-        
-            // アニメーションが終わったら（0.3秒後）確実に削除する
-            // ※連打されても、個別にタイマーが動くので問題ない
-            setTimeout(() => {
-                digit.remove();
-            }, 300);
-    });
-    
-    // 3. 新しい数字の要素を作る
-    const newDigit = document.createElement('span');
-    newDigit.textContent = count;
-    newDigit.className = 'digit slide-in'; // 「下から入る」クラスをつける
-    
-    // 4. 新しい数字を画面に追加
-    display.appendChild(newDigit);
+        count++; // 回数を増やす（見た目の即時反映）
+        updateDisplay(count); // 画面更新
 
-    confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { x: 0.07, y: 0.6 }
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { x: 0.07, y: 0.6 }
+        });
     });
 })
 }
