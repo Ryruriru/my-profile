@@ -1,0 +1,26 @@
+{
+  "name": "my-profile",
+  "version": "1.0.0",
+  "description": "You can visit [ryruriru.com](https://ryruriru.com/) .",
+  "main": "script.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ryruriru/my-profile.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Ryruriru/my-profile/issues"
+  },
+  "homepage": "https://github.com/Ryruriru/my-profile#readme",
+  "devDependencies": {
+    "vite": "^7.2.6"
+  }
+}

@@ -16,8 +16,9 @@ updateTime();
 
 setInterval(updateTime, 1000);
 
-// 回数を数える変数
-const API_URL = "http://localhost:8080/count" ;
+// 環境変数からAPIのURLを読み込む
+// .env ファイルに書いた VITE_API_URL がここで使われる
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/count';
 
 
 let count = 0;
