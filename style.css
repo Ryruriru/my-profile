@@ -102,6 +102,10 @@ pre {
     background-color: #0056b3;
 }
 
+.count-button:active {
+    transform: scale(0.96); /* クリック時に少し凹む */
+}
+
 .intro {
     color:#555; /* 文字の色を濃いグレーにする */
     font-weight: bold; /* 文字を太くする */
