@@ -17,32 +17,65 @@ updateTime();
 setInterval(updateTime, 1000);
 
 // 回数を数える変数
+const API_URL = "http://localhost:8080/count" ;
+
+
 let count = 0;
 
 // ボタンと表示エリアの要素を取得
 const btn = document.getElementById('click-button');
 const display = document.getElementById('click-count');
 
-// ボタンがクリックされたときの処理
-btn.addEventListener('click', function() {
-    count++; // 回数を増やす
-    
-    // アニメーション処理
-    
-    // 1. 今表示されている「すべての」数字を取得
+function updateDisplay(newCount) {
     const currentDigits = display.querySelectorAll('.digit');
     
-    // 2. 古い数字たちを強制的に「退場モード（slide-out）」にする
-    //    すでに退場中のものも含めて、すべて上に飛ばす
     currentDigits.forEach(digit => {
-        digit.classList.remove('slide-in'); // 入場アニメーションをキャンセル
-        digit.classList.add('slide-out');   // 退場アニメーションを開始
+        digit.classList.remove('slide-in');
+        digit.classList.add('slide-out');
         
-        // アニメーションが終わったら（0.3秒後）確実に削除する
-        // ※連打されても、個別にタイマーが動くので問題ない
-        setTimeout(() => {
-            digit.remove();
-        }, 300);
+        setTimeout(() => {digit.remove();},
+        300);
+    });
+    
+    const newDigit = document.createElement('span');
+    newDigit.textContent = newCount;
+    newDigit.className = 'digit slide-in';
+    
+    display.appendChild(newDigit);
+}
+
+fetch(API_URL)
+    .then(response => response.json())
+    .then(data => {
+        console.log("Initial count from server:", data.count);
+        updateDisplay(data.count);
+    })
+    .catch(error => {
+        console.error("Error fetching initial count:", error);
+    });
+
+
+if (btn) {
+    // ボタンがクリックされたときの処理
+    btn.addEventListener('click', function() {
+        count++; // 回数を増やす
+    
+        // アニメーション処理
+    
+        // 1. 今表示されている「すべての」数字を取得
+        const currentDigits = display.querySelectorAll('.digit');
+    
+        // 2. 古い数字たちを強制的に「退場モード（slide-out）」にする
+        //    すでに退場中のものも含めて、すべて上に飛ばす
+        currentDigits.forEach(digit => {
+            digit.classList.remove('slide-in'); // 入場アニメーションをキャンセル
+            digit.classList.add('slide-out');   // 退場アニメーションを開始
+        
+            // アニメーションが終わったら（0.3秒後）確実に削除する
+            // ※連打されても、個別にタイマーが動くので問題ない
+            setTimeout(() => {
+                digit.remove();
+            }, 300);
     });
     
     // 3. 新しい数字の要素を作る
@@ -59,3 +92,4 @@ btn.addEventListener('click', function() {
         origin: { x: 0.07, y: 0.6 }
     });
 })
+}
